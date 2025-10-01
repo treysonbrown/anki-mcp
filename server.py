@@ -52,5 +52,51 @@ def get_recent_cards(n: int = 200):
     # Fetch info
     return anki_request("notesInfo", {"notes": recent_ids})
 
+
+
+@mcp.tool
+def add_card(deck_name: str, model_name: str, fields: dict, tags: list[str] = []):
+    """
+    Add a new card to a given deck.
+    
+    Args:
+        deck_name: The deck to add the card to.
+        model_name: The note type/model (e.g., "Basic", "Cloze").
+        fields: A dict mapping field names (Front, Back, Text, etc.) to values.
+        tags: Optional list of tags.
+
+    Returns:
+        The note ID of the created card, or None if failed.
+    """
+    note = {
+        "deckName": deck_name,
+        "modelName": model_name,
+        "fields": fields,
+        "tags": tags,
+    }
+    return anki_request("addNote", {"note": note})
+
+
+@mcp.tool
+def delete_cards(note_ids: list[int]):
+    """
+    Delete cards by their note IDs.
+    
+    Args:
+        note_ids: The list of note IDs to delete.
+    
+    Returns:
+        True if successful.
+    """
+    if not note_ids:
+        return False
+    return anki_request("deleteNotes", {"notes": note_ids})
+
+
+
+
+
+
+
 if __name__ == "__main__":
-    mcp.run(transport="http", port=8000)
+    mcp.run()
