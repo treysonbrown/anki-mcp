@@ -6,10 +6,10 @@ Uses the AnkiConnect API to communicate allowing you to have actionable informat
 
 ## Installation
 
-git clone https://github.com/nobot/anki-mcp.git
+`git clone https://github.com/nobot/anki-mcp.git`
 
-cd anki-mcp
+`cd anki-mcp`
 
-fastmcp install claude-destkop server.py
+`fastmcp install claude-destkop server.py`
 
 Claude Desktop should now be able to call the tools.
